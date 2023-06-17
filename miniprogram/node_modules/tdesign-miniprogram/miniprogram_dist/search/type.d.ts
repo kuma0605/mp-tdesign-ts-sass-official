@@ -19,6 +19,10 @@ export interface TdSearchProps {
         type: ArrayConstructor;
         value?: ['t-class', 't-class-input', 't-class-input-container', 't-class-cancel', 't-class-left', 't-class-right'];
     };
+    cursorSpacing?: {
+        type: NumberConstructor;
+        value?: number;
+    };
     focus?: {
         type: BooleanConstructor;
         value?: boolean;

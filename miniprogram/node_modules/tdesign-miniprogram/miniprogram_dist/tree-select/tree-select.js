@@ -19,8 +19,6 @@ let TreeSelect = class TreeSelect extends SuperComponent {
         this.data = {
             prefix,
             classPrefix: name,
-            labelAlias: 'label',
-            valueAlias: 'value',
         };
         this.properties = props;
         this.controlledProps = [
@@ -33,22 +31,20 @@ let TreeSelect = class TreeSelect extends SuperComponent {
             value() {
                 this.buildTreeOptions();
             },
-            keys(obj) {
-                this.setData({
-                    labelAlias: obj.label || 'label',
-                    valueAlias: obj.value || 'value',
-                });
-            },
         };
         this.methods = {
             buildTreeOptions() {
-                const { options, value, multiple } = this.data;
+                const { options, value, multiple, keys } = this.data;
                 const treeOptions = [];
                 let level = -1;
                 let node = { children: options };
                 while (node && node.children) {
                     level += 1;
-                    const list = node.children;
+                    const list = node.children.map((item) => ({
+                        label: item[(keys === null || keys === void 0 ? void 0 : keys.label) || 'label'],
+                        value: item[(keys === null || keys === void 0 ? void 0 : keys.value) || 'value'],
+                        children: item.children,
+                    }));
                     const thisValue = value === null || value === void 0 ? void 0 : value[level];
                     treeOptions.push([...list]);
                     if (thisValue == null) {

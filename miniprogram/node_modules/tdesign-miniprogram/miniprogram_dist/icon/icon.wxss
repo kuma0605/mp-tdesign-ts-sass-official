@@ -72,13 +72,13 @@
 .t-icon-arrow-down-rectangle:before {
   content: '\E005';
 }
-.t-icon-arrow-down-triangle-filled:before {
+.t-icon-arrow-down:before {
   content: '\E006';
 }
-.t-icon-arrow-down-triangle:before {
+.t-icon-arrow-left:before {
   content: '\E007';
 }
-.t-icon-arrow-down:before {
+.t-icon-arrow-right:before {
   content: '\E008';
 }
 .t-icon-arrow-triangle-down-filled:before {

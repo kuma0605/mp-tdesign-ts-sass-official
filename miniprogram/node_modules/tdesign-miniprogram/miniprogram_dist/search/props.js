@@ -14,6 +14,10 @@ const props = {
     externalClasses: {
         type: Array,
     },
+    cursorSpacing: {
+        type: Number,
+        value: 0,
+    },
     focus: {
         type: Boolean,
         value: false,

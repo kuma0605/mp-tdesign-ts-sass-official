@@ -25,6 +25,7 @@ let Stepper = class Stepper extends SuperComponent {
         ];
         this.observers = {
             value(v) {
+                this.preValue = Number(v);
                 this.setData({
                     currentValue: Number(v),
                 });
@@ -61,6 +62,9 @@ let Stepper = class Stepper extends SuperComponent {
         return Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
     }
     setValue(value) {
+        if (this.preValue === value)
+            return;
+        this.preValue = value;
         this._trigger('change', { value });
     }
     minusValue() {

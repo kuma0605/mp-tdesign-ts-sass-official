@@ -4,7 +4,7 @@ const onPageScroll = function (event) {
     if (!page)
         return;
     const { pageScroller } = page;
-    pageScroller.forEach((scroller) => {
+    pageScroller === null || pageScroller === void 0 ? void 0 : pageScroller.forEach((scroller) => {
         if (typeof scroller === 'function') {
             scroller(event);
         }

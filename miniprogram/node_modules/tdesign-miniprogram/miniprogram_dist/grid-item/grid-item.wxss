@@ -49,6 +49,13 @@
   flex-direction: row;
   padding-left: var(--td-grid-item-padding, 32rpx);
 }
+.t-grid-item__content--left {
+  justify-self: flex-start;
+  align-items: flex-start;
+}
+.t-grid-item__content--left .t-grid-item__words {
+  text-align: left;
+}
 .t-grid-item__words {
   width: 100%;
   text-align: center;
@@ -87,13 +94,6 @@
   justify-content: center;
   background: var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3));
   border-radius: var(--td-radius-default, 12rpx);
-}
-.t-grid-item--left {
-  justify-self: flex-start;
-  align-items: flex-start;
-}
-.t-grid-item--left .t-grid-item__words {
-  text-align: left;
 }
 .t-grid-item__text {
   width: inherit;

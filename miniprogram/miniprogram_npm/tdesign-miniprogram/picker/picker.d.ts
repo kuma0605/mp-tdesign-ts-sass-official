@@ -7,7 +7,7 @@ export default class Picker extends SuperComponent {
     };
     relations: RelationsOptions;
     observers: {
-        value(): void;
+        visible(): void;
         keys(obj: any): void;
     };
     data: {

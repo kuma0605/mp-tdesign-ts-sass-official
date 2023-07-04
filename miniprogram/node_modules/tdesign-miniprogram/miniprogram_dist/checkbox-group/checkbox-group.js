@@ -23,10 +23,7 @@ let CheckBoxGroup = class CheckBoxGroup extends SuperComponent {
             classPrefix: name,
             checkboxOptions: [],
         };
-        this.properties = Object.assign(Object.assign({}, props), { borderless: {
-                type: Boolean,
-                value: false,
-            } });
+        this.properties = props;
         this.observers = {
             value() {
                 this.updateChildren();

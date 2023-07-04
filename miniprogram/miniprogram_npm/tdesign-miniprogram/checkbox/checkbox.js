@@ -27,7 +27,7 @@ let CheckBox = class CheckBox extends SuperComponent {
                     const { value, disabled, borderless } = parent.data;
                     const valueSet = new Set(value);
                     const data = {
-                        disabled: disabled || this.data.disabled,
+                        disabled: this.data.disabled == null ? disabled : this.data.disabled,
                     };
                     if (borderless) {
                         data.borderless = true;
@@ -46,9 +46,6 @@ let CheckBox = class CheckBox extends SuperComponent {
         this.properties = Object.assign(Object.assign({}, Props), { theme: {
                 type: String,
                 value: 'default',
-            }, borderless: {
-                type: Boolean,
-                value: false,
             } });
         this.data = {
             prefix,

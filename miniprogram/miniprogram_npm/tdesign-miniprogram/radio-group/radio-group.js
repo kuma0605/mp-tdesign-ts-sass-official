@@ -61,8 +61,9 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                 this._trigger('change', { value });
             },
             handleRadioChange(e) {
-                const { value, index } = e.target.dataset;
-                this._trigger('change', { value, index });
+                const { checked } = e.detail;
+                const { value, index, allowUncheck } = e.target.dataset;
+                this._trigger('change', checked === false && allowUncheck ? { value: null, index } : { value, index });
             },
             initWithOptions() {
                 const { options, value, keys } = this.data;

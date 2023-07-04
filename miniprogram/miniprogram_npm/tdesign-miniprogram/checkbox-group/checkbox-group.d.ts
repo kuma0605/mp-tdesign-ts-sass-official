@@ -7,40 +7,7 @@ export default class CheckBoxGroup extends SuperComponent {
         classPrefix: string;
         checkboxOptions: any[];
     };
-    properties: {
-        borderless: {
-            type: BooleanConstructor;
-            value: boolean;
-        };
-        style?: {
-            type: StringConstructor;
-            value?: string;
-        };
-        disabled?: {
-            type: BooleanConstructor;
-            value?: boolean;
-        };
-        max?: {
-            type: NumberConstructor;
-            value?: number;
-        };
-        name?: {
-            type: StringConstructor;
-            value?: string;
-        };
-        options?: {
-            type: ArrayConstructor;
-            value?: import("./type").CheckboxOption[];
-        };
-        value?: {
-            type: ArrayConstructor;
-            value?: import("./type").CheckboxGroupValue;
-        };
-        defaultValue?: {
-            type: ArrayConstructor;
-            value?: import("./type").CheckboxGroupValue;
-        };
-    };
+    properties: import("./type").TdCheckboxGroupProps<import("./type").CheckboxGroupValue>;
     observers: {
         value(): void;
         options(): void;

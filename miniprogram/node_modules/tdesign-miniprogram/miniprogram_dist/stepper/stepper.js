@@ -25,10 +25,7 @@ let Stepper = class Stepper extends SuperComponent {
         ];
         this.observers = {
             value(v) {
-                this.preValue = Number(v);
-                this.setData({
-                    currentValue: Number(v),
-                });
+                this.observeValue(v);
             },
         };
         this.data = {
@@ -57,15 +54,30 @@ let Stepper = class Stepper extends SuperComponent {
         }
         return false;
     }
+    observeValue(v) {
+        this.preValue = Number(v);
+        this.setData({
+            currentValue: this.format(Number(v)),
+        });
+    }
+    getLen(num) {
+        const numStr = num.toString();
+        return numStr.indexOf('.') === -1 ? 0 : numStr.split('.')[1].length;
+    }
+    add(a, b) {
+        const maxLen = Math.max(this.getLen(a), this.getLen(b));
+        const base = Math.pow(10, maxLen);
+        return Math.round(a * base + b * base) / base;
+    }
     format(value) {
-        const { min, max } = this.properties;
-        return Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
+        const { min, max, step } = this.properties;
+        return Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER).toFixed(this.getLen(step));
     }
     setValue(value) {
         if (this.preValue === value)
             return;
         this.preValue = value;
-        this._trigger('change', { value });
+        this._trigger('change', { value: Number(value) });
     }
     minusValue() {
         if (this.isDisabled('minus')) {
@@ -73,7 +85,7 @@ let Stepper = class Stepper extends SuperComponent {
             return false;
         }
         const { currentValue, step } = this.data;
-        this.setValue(this.format(currentValue - step));
+        this.setValue(this.format(this.add(currentValue, -step)));
     }
     plusValue() {
         if (this.isDisabled('plus')) {
@@ -81,7 +93,7 @@ let Stepper = class Stepper extends SuperComponent {
             return false;
         }
         const { currentValue, step } = this.data;
-        this.setValue(this.format(currentValue + step));
+        this.setValue(this.format(this.add(currentValue, step)));
     }
     changeValue(e) {
         const value = String(e.detail.value)

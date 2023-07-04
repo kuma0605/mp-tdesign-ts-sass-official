@@ -47,4 +47,5 @@ export interface RadioOptionObj {
     label?: string;
     value?: string | number;
     disabled?: boolean;
+    allowUncheck?: boolean;
 }
